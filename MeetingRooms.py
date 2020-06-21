@@ -1,6 +1,7 @@
 """ Given an array of time intervals (start, end) for classroom lectures (possibly overlapping), 
 find the minimum number of rooms required. """
 
+
 from heapq import heappush, heappop
 import sys
 
@@ -30,16 +31,27 @@ class MeetingRooms:
 			cnt = max(len(heap), cnt)
 		return cnt
 
-myInstances = []
 myClasses = {
     "interval01": (0, 20),
     "interval02": (10, 40),
     "interval03": (50, 100)
     }
-
-for thisClass in myClasses.keys():
-    exec("%s = Interval('%s', '%s')" % (thisClass, myClasses[thisClass][0], myClasses[thisClass][1]))
-    myInstances.append(getattr(sys.modules[__name__], thisClass))
-
+instances = []
+for i in myClasses.values():
+    instances.append(Interval(i[0],i[1]))
 meetingRoom = MeetingRooms()
-print(meetingRoom.minMeetingRooms(myInstances))
+print(meetingRoom.minMeetingRooms(instances)) 
+
+# myInstances = []
+# myClasses = {
+#     "interval01": (0, 20),
+#     "interval02": (10, 40),
+#     "interval03": (50, 100)
+#     }
+
+# for thisClass in myClasses.keys():
+#     exec("%s = Interval('%s', '%s')" % (thisClass, myClasses[thisClass][0], myClasses[thisClass][1]))
+#     myInstances.append(getattr(sys.modules[__name__], thisClass))
+
+# meetingRoom = MeetingRooms()
+# print(meetingRoom.minMeetingRooms(myInstances))
